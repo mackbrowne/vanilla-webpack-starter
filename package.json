@@ -1,0 +1,23 @@
+{
+  "name": "vanilla-webpack-starter",
+  "version": "0.0.1",
+  "description": "Template project for vanillaJS",
+  "private": true,
+  "author": "Mackenzie Browne <info@mackbrowne.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack --mode=production",
+    "start:build": "yarn build && serve -s dist/"
+  },
+  "devDependencies": {
+    "css-loader": "^3.5.3",
+    "html-webpack-plugin": "^4.3.0",
+    "serve": "^11.3.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {}
+}
