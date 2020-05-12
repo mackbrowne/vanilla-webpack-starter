@@ -1,0 +1,133 @@
+$primary: #4262ff;
+$font-primary: #050038;
+$font-secondary: #ffffff;
+$font-error: #c83a33;
+$bg-primary: #f8f8f7;
+$bg-secondary: #ffffff;
+$bg-pill: rgba(102, 153, 255, 0.2);
+$border-primary: #c3c2cf;
+$shadow: rgba(0, 0, 0, 0.2);
+
+.emails-input--container {
+  color: $font-primary;
+  font-family: "Open Sans";
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 300px;
+  box-shadow: 0px 8px 20px $shadow;
+  border-radius: 8px;
+  overflow: hidden;
+
+  width: 540px;
+  @media (max-width: 540px) {
+    width: 100%;
+  }
+}
+
+.emails-input--content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: $bg-primary;
+  padding: 0 50px;
+
+  h1 {
+    margin: 32px 8px 0 8px;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 27px;
+  }
+}
+
+.emails-input--error-message {
+  font-size: 12px;
+  font-weight: normal;
+  opacity: 0;
+  color: $font-error;
+  margin: 2px 8px;
+
+  &.emails-input--active {
+    opacity: 100;
+  }
+}
+
+.emails-input--error-container {
+  display: flex;
+  flex: 1;
+  padding: 6px;
+  margin: 0px 0px 16px;
+  border-radius: 5px;
+  border: 1px dashed transparent;
+
+  &.emails-input--active {
+    border-color: $font-error;
+  }
+}
+
+.emails-input--textarea {
+  flex: 1;
+  background: $bg-secondary;
+  border: 1px solid $border-primary;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 6px 5px;
+}
+
+.emails-input--input {
+  border: none;
+  outline: none;
+  font-family: Open Sans;
+  font-size: 14px;
+  line-height: 24px;
+  &::placeholder {
+    color: #c3c2cf;
+  }
+}
+
+.emails-input--pill {
+  background-color: $bg-pill;
+  border-radius: 100px;
+  padding: 3px 10px;
+  font-size: 14px;
+  line-height: 30px;
+  margin-right: 8px;
+
+  img {
+    margin-left: 8px;
+    margin-bottom: 2px;
+  }
+
+  &.emails-input--invalid {
+    background-color: initial;
+    border-bottom: 1px dashed $font-error;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 4px;
+    padding-bottom: 2px;
+  }
+}
+
+.emails-input--actions {
+  background-color: $bg-secondary;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 24px 58px 32px;
+}
+
+.emails-input--button {
+  color: $font-secondary;
+  font-size: 14px;
+  line-height: 24px;
+  background: $primary;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+
+  margin-right: 16px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
