@@ -1,0 +1,14 @@
+.emails-input--button {
+  color: $font-secondary;
+  font-size: 14px;
+  line-height: 24px;
+  background: $primary;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+
+  margin-right: 16px;
+  &:last-child {
+    margin-right: 0;
+  }
+}

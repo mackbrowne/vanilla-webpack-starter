@@ -1,9 +1,9 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  stats: "minimal",
+  stats: 'minimal',
   devServer: {
-    contentBase: "./public"
+    contentBase: './src/public',
   },
   module: {
     rules: [
@@ -11,22 +11,30 @@ module.exports = {
         test: /\.(s[ac]ss|css)$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
+          'sass-loader',
         ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|png|jpe?g|gif)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          // Disables attributes processing
+          attributes: false,
+        },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "public/index.html",
+      template: 'src/public/index.html',
     }),
   ],
 };
