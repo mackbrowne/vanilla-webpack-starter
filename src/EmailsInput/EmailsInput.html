@@ -6,28 +6,32 @@
     </h2>
     <div class="emails-input--error-container emails-input--active">
       <div class="emails-input--textarea">
-        <span class="emails-input--pill">
-          john@miro.com<img src="remove.png" />
-        </span>
-        <span class="emails-input--pill emails-input--invalid">
-          invalid.email<img src="remove.png" />
-        </span>
-        <span class="emails-input--pill">
-          mike@miro.com<img src="remove.png" />
-        </span>
-        <span class="emails-input--pill">
-          alexander@miro.com<img src="remove.png" />
-        </span>
+        <div class="emails-input--pills-group">
+          <template id="emails-input--pill-template">
+            <!-- <span class="emails-input--pill emails-input--invalid">
+              invalid.email<img src="remove.png" />
+            </span> -->
+            <div class="emails-input--pill">
+              <span class="emails-input--pill-label"></span
+              ><img src="remove.png" />
+            </div>
+          </template>
+        </div>
         <input class="emails-input--input" placeholder="add more people..." />
       </div>
     </div>
   </div>
   <div class="emails-input--actions">
-    <button class="emails-input--button">
+    <button class="emails-input--button emails-input--button-primary">
       Add email
     </button>
-    <button class="emails-input--button">
+    <button class="emails-input--button emails-input--button-secondary">
       Get emails count
     </button>
+    <template id="emails-input--button-template">
+      <button class="emails-input--button emails-input--button-secondary">
+        Get emails count
+      </button>
+    </template>
   </div>
 </div>

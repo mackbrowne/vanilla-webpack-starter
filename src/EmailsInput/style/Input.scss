@@ -35,6 +35,10 @@
   overflow-y: auto;
 }
 
+.emails-input--pills-group {
+  display: inline;
+}
+
 .emails-input--input {
   border: none;
   outline: none;
@@ -48,6 +52,7 @@
 }
 
 .emails-input--pill {
+  display: inline;
   background-color: $bg-pill;
   border-radius: 100px;
   padding: 3px 10px;
