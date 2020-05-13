@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#emails-input {
+  width: 540px;
+  // width: 100%;
+  @media (max-width: 540px) {
+    width: 100%;
+  }
+}

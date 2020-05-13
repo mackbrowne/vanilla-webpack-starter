@@ -1,0 +1,15 @@
+$primary: #4262ff;
+$font-primary: #050038;
+$font-secondary: #ffffff;
+$font-error: #c83a33;
+$bg-primary: #f8f8f7;
+$bg-secondary: #ffffff;
+$bg-pill: rgba(102, 153, 255, 0.2);
+$border-primary: #c3c2cf;
+$shadow: rgba(0, 0, 0, 0.2);
+
+.emails-input {
+  @import 'styles/Button.scss';
+  @import 'styles/Container.scss';
+  @import 'styles/Input.scss';
+}

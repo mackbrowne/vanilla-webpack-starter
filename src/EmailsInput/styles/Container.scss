@@ -1,6 +1,6 @@
-.emails-input--container {
+&--container {
   color: $font-primary;
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
   overflow: hidden;
 }
 
-.emails-input--content {
+&--content {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -25,7 +25,7 @@
   }
 }
 
-.emails-input--actions {
+&--actions {
   background-color: $bg-secondary;
   display: flex;
   justify-content: flex-start;

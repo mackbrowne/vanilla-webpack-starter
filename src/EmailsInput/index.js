@@ -2,6 +2,8 @@ import EmailsInputTemplate from './EmailsInput.html';
 import keycode from 'keycode';
 import randomEmail from 'random-email';
 
+import './main.scss';
+
 export default class {
   constructor(node, options = {}) {
     this.node = node;
