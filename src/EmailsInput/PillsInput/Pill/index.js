@@ -34,9 +34,10 @@ export default class Pill {
   _initRemove() {
     this.pill
       .querySelector(`.${bem}--pill-remove`)
-      .addEventListener('click', () => {
-        this.parent.removeChild(this.pill)
-        this.removeEvent(`Remove - ${this.pill.innerText.trim()}`)
+      .addEventListener('click', e => {
+        e.stopPropagation();
+        this.parent.removeChild(this.pill);
+        this.removeEvent(`Remove - ${this.pill.innerText.trim()}`);
       });
   }
 }

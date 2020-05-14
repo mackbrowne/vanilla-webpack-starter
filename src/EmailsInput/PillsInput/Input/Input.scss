@@ -1,0 +1,13 @@
+&--input {
+  display: inline-block;
+  color: $font-light;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 24px;
+
+  &-active {
+    display: inline;
+    color: $font-primary;
+  }
+}

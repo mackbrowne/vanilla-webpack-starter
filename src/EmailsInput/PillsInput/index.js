@@ -1,7 +1,7 @@
 import PillsInputTemplate from './PillsInput.html';
-import keycode from 'keycode';
 import { bem } from '../index';
 import Pill from './Pill';
+import Input from './Input';
 
 export default class PillsInput {
   constructor(parent, validator, errorMessage) {
@@ -11,16 +11,14 @@ export default class PillsInput {
 
     this._renderTemplate();
 
-    this.input = this.pillsInput.querySelector(`.${bem}--input`);
-    this.container = this.pillsInput.querySelector(`.${bem}--pills-group`);
-    this.errorMessageContainer = this.pillsInput.querySelector(`.${bem}--error-message`);
-    this.errorContainer = this.pillsInput.querySelector(`.${bem}--error-container`);
+    const select = (name) => this.pillsInput.querySelector(`.${bem}--${name}`);
+    this.container = select('pills-group');
+    this.errorMessageContainer = select('error-message');
+    this.errorContainer = select('error-container');
+    this.textarea = select('textarea');
 
+    this._initInput();
     this._initError();
-    this._initTextArea();
-    this._initKeypress();
-    this._initPaste();
-    this._initFocus();
 
     this.parent.appendChild(this.pillsInput);
   }
@@ -31,67 +29,39 @@ export default class PillsInput {
     this.pillsInput = template.content;
   }
 
+  _initInput() {
+    this.input = new Input(this.textarea, 'add more people...', (label) =>
+      this.addPill(label)
+    );
+  }
+
   _initError() {
     this.errorMessageContainer.innerHTML = this.errorMessage;
   }
 
-  _initPaste() {
-    this.input.addEventListener('paste', (e) => {
-      e.preventDefault();
-      (e.clipboardData || window.clipboardData)
-        .getData('text')
-        .split(',')
-        .forEach((label) => this.addPill(label));
-    });
-  }
-
-  _initKeypress() {
-    this.input.addEventListener('keydown', (e) => {
-      const key = keycode(e);
-      if (['enter', ',', 'tab'].includes(key)) {
-        e.preventDefault();
-        this.addPill(this.input.value);
-      }
-    });
-  }
-
-  _initFocus() {
-    this.input.addEventListener('blur', (e) => {
-      const textValue = this.input.value;
-      if (textValue) this.addPill(textValue);
-    });
-  }
-
-  _initTextArea() {
-    const textarea = this.pillsInput.querySelector(`.${bem}--textarea`);
-    textarea.addEventListener('click', () => {
-      this.input.focus();
-    });
-  }
-
-  addPill(rawLabel) {
-    this.input.value = '';
-    const label = rawLabel.trim();
-    new Pill(this.container, label, this.validator, detail => this._dispatchEvent(detail));
-    this._dispatchEvent(`Add - ${label}`);
-  }
-
   _dispatchEvent(detail) {
     this._validate();
-    document.dispatchEvent(
-      new CustomEvent(`${bem}--input-change`, { detail })
-    );
+    document.dispatchEvent(new CustomEvent(`${bem}--input-change`, { detail }));
   }
 
   _validate() {
     const hasInvalid = this.container.querySelector(`.${bem}--pill-invalid`);
-    if(hasInvalid){
+    if (hasInvalid) {
       this.errorMessageContainer.classList.add(`${bem}--error-message-active`);
-      this.errorContainer.classList.add(`${bem}--error-container-active`)
-    }else{
-      this.errorMessageContainer.classList.remove(`${bem}--error-message-active`);
-      this.errorContainer.classList.remove(`${bem}--error-container-active`)
+      this.errorContainer.classList.add(`${bem}--error-container-active`);
+    } else {
+      this.errorMessageContainer.classList.remove(
+        `${bem}--error-message-active`
+      );
+      this.errorContainer.classList.remove(`${bem}--error-container-active`);
     }
+  }
+
+  addPill(label) {
+    new Pill(this.container, label, this.validator, (detail) =>
+      this._dispatchEvent(detail)
+    );
+    this._dispatchEvent(`Add - ${label}`);
   }
 
   clear() {

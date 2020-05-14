@@ -12,7 +12,6 @@ An emails-input instance should implement the following API:
 get all email values -- getEmails
 A method to replace all entered emails with new ones -- replaceEmails
 Ability to subscribe for emails list changes. -- subscribe( callback ) -- callback has 1 param event status.
-gotta do something with the error
 
 Minor:
 maybe add a button around the x

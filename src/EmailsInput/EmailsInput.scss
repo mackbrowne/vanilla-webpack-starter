@@ -2,6 +2,7 @@ $primary: #4262ff;
 $font-primary: #050038;
 $font-secondary: #ffffff;
 $font-error: #c83a33;
+$font-light: #c3c2cf;
 $bg-primary: #f8f8f7;
 $bg-secondary: #ffffff;
 $bg-pill: rgba(102, 153, 255, 0.2);
@@ -12,6 +13,7 @@ $shadow: rgba(0, 0, 0, 0.2);
   @import 'Button/Button.scss';
   @import 'PillsInput/PillsInput.scss';
   @import 'PillsInput/Pill/Pill.scss';
+  @import 'PillsInput/Input/Input.scss';
 
   &--container {
     color: $font-primary;

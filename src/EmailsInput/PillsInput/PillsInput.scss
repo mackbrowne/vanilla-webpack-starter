@@ -38,15 +38,3 @@
 &--pills-group {
   display: inline;
 }
-
-&--input {
-  border: none;
-  outline: none;
-  font-family: Open Sans;
-  font-size: 14px;
-  line-height: 24px;
-
-  &::placeholder {
-    color: #c3c2cf;
-  }
-}
