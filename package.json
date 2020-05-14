@@ -6,7 +6,7 @@
   "author": "Mackenzie Browne <info@mackbrowne.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --hot",
+    "start": "webpack-dev-server",
     "test": "concurrently \"yarn start:build\" \"cypress open\"",
     "build": "webpack --mode=production",
     "start:build": "yarn build && serve -s dist/"
@@ -27,6 +27,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "email-validator": "^2.0.4",
     "keycode": "^2.2.0",
     "random-email": "^1.0.3",
     "typeface-open-sans": "^0.0.75"

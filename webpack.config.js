@@ -4,6 +4,7 @@ module.exports = {
   stats: 'minimal',
   devServer: {
     contentBase: './src/public',
+    hot: true,
   },
   module: {
     rules: [
