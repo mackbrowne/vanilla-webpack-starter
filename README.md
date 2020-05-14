@@ -12,6 +12,7 @@ An emails-input instance should implement the following API:
 A method to replace all entered emails with new ones.
 Ability to subscribe for emails list changes.
 click anywhere in the textarea and get focus
+gotta do something with the error
 
 Minor:
 maybe add a button around the x

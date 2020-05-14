@@ -1,5 +1,6 @@
 import 'typeface-open-sans';
 import './main.scss';
+import './EmailsInput/EmailsInput.scss';
 
 import EmailsInput from './EmailsInput';
 

@@ -1,5 +1,5 @@
 import PillTemplate from './Pill.html';
-import { bem } from '../index';
+import { bem } from '../../index';
 
 export default class Pill {
   constructor(parent, label, validator) {
