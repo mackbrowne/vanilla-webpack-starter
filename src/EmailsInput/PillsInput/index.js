@@ -4,15 +4,19 @@ import { bem } from '../index';
 import Pill from './Pill';
 
 export default class PillsInput {
-  constructor(parent, validator) {
+  constructor(parent, validator, errorMessage) {
     this.parent = parent;
     this.validator = validator;
+    this.errorMessage = errorMessage;
 
     this._renderTemplate();
 
     this.input = this.pillsInput.querySelector(`.${bem}--input`);
     this.container = this.pillsInput.querySelector(`.${bem}--pills-group`);
+    this.errorMessageContainer = this.pillsInput.querySelector(`.${bem}--error-message`);
+    this.errorContainer = this.pillsInput.querySelector(`.${bem}--error-container`);
 
+    this._initError();
     this._initTextArea();
     this._initKeypress();
     this._initPaste();
@@ -25,6 +29,10 @@ export default class PillsInput {
     const template = document.createElement('template');
     template.innerHTML = PillsInputTemplate;
     this.pillsInput = template.content;
+  }
+
+  _initError() {
+    this.errorMessageContainer.innerHTML = this.errorMessage;
   }
 
   _initPaste() {
@@ -61,9 +69,34 @@ export default class PillsInput {
     });
   }
 
-  addPill(label) {
+  addPill(rawLabel) {
     this.input.value = '';
-    new Pill(this.container, label.trim(), this.validator);
+    const label = rawLabel.trim();
+    new Pill(this.container, label, this.validator, detail => this._dispatchEvent(detail));
+    this._dispatchEvent(`Add - ${label}`);
+  }
+
+  _dispatchEvent(detail) {
+    this._validate();
+    document.dispatchEvent(
+      new CustomEvent(`${bem}--input-change`, { detail })
+    );
+  }
+
+  _validate() {
+    const hasInvalid = this.container.querySelector(`.${bem}--pill-invalid`);
+    if(hasInvalid){
+      this.errorMessageContainer.classList.add(`${bem}--error-message-active`);
+      this.errorContainer.classList.add(`${bem}--error-container-active`)
+    }else{
+      this.errorMessageContainer.classList.remove(`${bem}--error-message-active`);
+      this.errorContainer.classList.remove(`${bem}--error-container-active`)
+    }
+  }
+
+  clear() {
+    this.container.innerHTML = '';
+    this._dispatchEvent(`Clear All`);
   }
 
   values() {

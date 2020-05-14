@@ -25,7 +25,11 @@ export default class EmailsInput {
 
   _renderInput() {
     const inputContainer = this.node.querySelector(`.${bem}--content`);
-    this.pillsInput = new PillsInput(inputContainer, emailValidator.validate);
+    this.pillsInput = new PillsInput(
+      inputContainer,
+      emailValidator.validate,
+      'Please correct invalid emails'
+    );
   }
 
   _renderButtons() {
@@ -44,5 +48,24 @@ export default class EmailsInput {
 
   getEmails() {
     return this.pillsInput.values();
+  }
+
+  replaceEmails(emails) {
+    this.pillsInput.clear();
+    emails.forEach((email) => this.pillsInput.addPill(email));
+  }
+
+  subscribe(callback) {
+    if (document.addEventListener) {
+      document.addEventListener(
+        `${bem}--input-change`,
+        ({ detail }) => callback(detail),
+        false
+      );
+    } else {
+      document.attachEvent(`${bem}--input-change`, ({ detail }) =>
+        callback(detail)
+      );
+    }
   }
 }

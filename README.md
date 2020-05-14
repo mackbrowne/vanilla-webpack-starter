@@ -9,9 +9,9 @@ Functional requirements:
 Tests are not mandatory, but having them is a plus.
 
 An emails-input instance should implement the following API:
-A method to replace all entered emails with new ones.
-Ability to subscribe for emails list changes.
-click anywhere in the textarea and get focus
+get all email values -- getEmails
+A method to replace all entered emails with new ones -- replaceEmails
+Ability to subscribe for emails list changes. -- subscribe( callback ) -- callback has 1 param event status.
 gotta do something with the error
 
 Minor:
@@ -19,4 +19,3 @@ maybe add a button around the x
 hit too many keys and the commas come back
 think about how im doing bem in index.js more
 Look into detaching, unsubscribing events
-kinda weird bug with multiple instances maybe worth checkin' out

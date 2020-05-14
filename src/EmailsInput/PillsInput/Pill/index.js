@@ -2,10 +2,11 @@ import PillTemplate from './Pill.html';
 import { bem } from '../../index';
 
 export default class Pill {
-  constructor(parent, label, validator) {
+  constructor(parent, label, validator, removeEvent) {
     this.parent = parent;
     this.label = label;
     this.validator = validator;
+    this.removeEvent = removeEvent;
 
     this._renderTemplate();
     this._renderLabel();
@@ -33,6 +34,9 @@ export default class Pill {
   _initRemove() {
     this.pill
       .querySelector(`.${bem}--pill-remove`)
-      .addEventListener('click', () => this.parent.removeChild(this.pill));
+      .addEventListener('click', () => {
+        this.parent.removeChild(this.pill)
+        this.removeEvent(`Remove - ${this.pill.innerText.trim()}`)
+      });
   }
 }
