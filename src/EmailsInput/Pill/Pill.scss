@@ -1,0 +1,25 @@
+&--pill {
+  display: inline-block;
+  background-color: $bg-pill;
+  border-radius: 100px;
+  padding: 1px 10px;
+  font-size: 14px;
+  line-height: 24px;
+  margin-right: 3px;
+  margin-bottom: 4px;
+
+  &-invalid {
+    margin-right: 8px;
+    background-color: initial;
+    border-bottom: 1px dashed $font-error;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 4px;
+    padding-bottom: 2px;
+  }
+
+  &-remove {
+    margin-left: 4px;
+    margin-bottom: 1px;
+  }
+}

@@ -1,37 +1,39 @@
 import EmailsInputTemplate from './EmailsInput.html';
 import keycode from 'keycode';
 import randomEmail from 'random-email';
-import emailValidator from "email-validator";
+import emailValidator from 'email-validator';
 
 import './main.scss';
+import Pill from './Pill';
 
-const bem = 'emails-input';
+export const bem = 'emails-input';
 
 export default class EmailsInput {
-  constructor(node, options = {}) {
+  constructor(node, options = {
+    buttons: []
+  }) {
     this.node = node;
     this.options = options;
     this.node.innerHTML = EmailsInputTemplate;
 
-    this.emails = [];
-
-    this.PillTemplate = this.node.querySelector(`#${bem}--pill-template`);
     this.ButtonTemplate = this.node.querySelector(`#${bem}--button-template`);
 
     this.textAreaElement = this.node.querySelector(`.${bem}--textarea`);
     this.pillsGroupElement = this.node.querySelector(`.${bem}--pills-group`);
 
     this.inputElement = this.node.querySelector(`.${bem}--input`);
-    this.inputElement.addEventListener('keydown', (e) => this._keyPressEvent(e));
+    this.inputElement.addEventListener('keydown', (e) =>
+      this._keyPressEvent(e)
+    );
     this.inputElement.addEventListener('paste', (e) => this._pasteEvent(e));
     this.inputElement.addEventListener('blur', (e) => {
       const textValue = this.inputElement.value;
-      if (textValue) this._addPill(textValue);
+      if (textValue) this._addEmail(textValue);
     });
 
     this.primaryButton = this.node.querySelector(`.${bem}--button-primary`);
     this.primaryButton.addEventListener('click', () =>
-      this._addPill(randomEmail())
+      this._addEmail(randomEmail())
     );
 
     this.secondaryButton = this.node.querySelector(`.${bem}--button-secondary`);
@@ -42,9 +44,7 @@ export default class EmailsInput {
     const key = keycode(e);
     if (['enter', ',', 'tab'].includes(key)) {
       e.preventDefault();
-      let pillLabel = this.inputElement.value;
-      if(key === ',') pillLabel = pillLabel.slice(0, -1);
-      this._addPill(pillLabel);
+      this._addEmail(this.inputElement.value);
     }
   }
 
@@ -53,43 +53,21 @@ export default class EmailsInput {
     (e.clipboardData || window.clipboardData)
       .getData('text')
       .split(',')
-      .forEach((email) => this._addPill(email.trim()));
+      .forEach((email) => this._addEmail(email.trim()));
   }
 
-  _newPill(label, validator) {
-    const pill = this.PillTemplate.content.cloneNode(true);
-    const pillLabel = pill.querySelector(`.${bem}--pill-label`);
-    pillLabel.innerHTML = label;
-
-    const pillElement = pill.querySelector(`.${bem}--pill`);
-    pill
-      .querySelector('img')
-      .addEventListener('click', () => {
-        this._removePill(pillElement, label);
-      }); 
-
-    
-    const validPill = validator(label);
-    if(!validPill) pillElement.classList.add(`${bem}--pill-invalid`);
-    
-    return pill;
-  }
-
-  _addPill(email) {
+  _addEmail(email) {
     this._clearInput();
-    this.emails.push(email);
-
-    const newPill = this._newPill(email, emailValidator.validate);
-    this.pillsGroupElement.appendChild(newPill);
-  }
-
-  _removePill(element, email) {
-    this.pillsGroupElement.removeChild(element);
-    this.emails.splice(this.emails.indexOf(email), 1);
+    new Pill(
+      this.pillsGroupElement,
+      email.trim(),
+      emailValidator.validate
+    );
   }
 
   _getCount() {
-    alert(`Total Emails: ${this.emails.length}`);
+    const pills = this.node.querySelectorAll(`.${bem}--pill`);
+    alert(`Total Emails: ${pills.length}`);
   }
 
   _clearInput() {
@@ -97,6 +75,7 @@ export default class EmailsInput {
   }
 
   getEmails() {
+    const pills = this.node.querySelectorAll(`.${bem}--pill`);
     return this.emails;
   }
 }
