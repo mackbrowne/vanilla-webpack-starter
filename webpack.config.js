@@ -25,17 +25,14 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        loader: 'html-loader',
-        options: {
-          // Disables attributes processing
-          attributes: false,
-        },
+        loader: 'html-loader'
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/public/index.html',
+      favicon: 'src/public/favicon.ico',
     }),
   ],
 };
