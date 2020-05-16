@@ -6,10 +6,7 @@ import Button from './Button';
 import PillsInput from './PillsInput';
 
 export default class EmailsInput {
-  constructor(
-    node,
-    options = {}
-  ) {
+  constructor(node, options = {}) {
     this.node = node;
     this.options = options;
     this.options.id = this.options.id || '';
@@ -33,11 +30,19 @@ export default class EmailsInput {
   _renderButtons() {
     const buttonContainer = this.node.querySelector(`.actions`);
 
-    new Button(buttonContainer, 'Add email', () =>
-      this.pillsInput.addPill(randomEmail())
+    new Button(buttonContainer, 'Add email', () => 
+      this.pillsInput.addPill(this._getRandomValidEmail())
     );
 
     new Button(buttonContainer, 'Get emails count', () => this._getCount());
+  }
+
+  _getRandomValidEmail(){
+    let newEmail = randomEmail();
+    while (!emailValidator.validate(newEmail)) {
+      newEmail = randomEmail();
+    }
+    return newEmail;
   }
 
   _getCount() {

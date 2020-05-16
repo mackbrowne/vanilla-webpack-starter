@@ -45,7 +45,5 @@ User `npm run-script <COMMAND>` to run the commands below.
 ## Todos
 
 - i need to write tests for the methods that are exposed on the class itself
-- maybe add a button around the x
-- make the pills wrap so super long emails can be supported multi-line
 - investigate mobile events why keydown isn't working
 - test IE 11
