@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('clickButton', (label) =>
+  cy.get('button').contains(label).click()
+);
+
+Cypress.Commands.add('typeEmail', (label) => cy.get('.input').type(label));
+
+const EXAMPLE_EMAIL = 'example@examplemail.com'
+Cypress.Commands.add('addEmailWithEnter', (email = EXAMPLE_EMAIL) =>
+  cy.typeEmail(`${email}{enter}`)
+);
+Cypress.Commands.add('addEmailWithUnfocus', (email = EXAMPLE_EMAIL) => {
+  cy.typeEmail(email);
+  cy.get('body').click();
+});
+Cypress.Commands.add('addEmailWithComma', (email = EXAMPLE_EMAIL) =>
+  cy.typeEmail(`${email},`)
+);
