@@ -74,7 +74,7 @@ export default class PillsInput {
   values() {
     const tags = this.container.innerText.trim();
     if (!tags.length) return [];
-    else return tags.split(' ');
+    return tags.split(' ');
   }
 
   size() {

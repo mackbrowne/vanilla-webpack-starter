@@ -11,4 +11,12 @@ button {
   &:last-child {
     margin-right: 0;
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background: lighten($primary, 10);
+  }
 }
