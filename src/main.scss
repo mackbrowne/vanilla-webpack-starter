@@ -6,8 +6,7 @@ body {
   height: 100vh;
 }
 
-#emails-input,
-#emails-input2 {
+.emails-input--wrapper {
   width: 540px;
   // width: 100%;
   @media (max-width: 540px) {

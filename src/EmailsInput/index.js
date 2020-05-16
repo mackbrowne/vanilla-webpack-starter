@@ -8,12 +8,11 @@ import PillsInput from './PillsInput';
 export default class EmailsInput {
   constructor(
     node,
-    options = {
-      buttons: [],
-    }
+    options = {}
   ) {
     this.node = node;
     this.options = options;
+    this.options.id = this.options.id || '';
 
     this.node.innerHTML = EmailsInputTemplate;
 
@@ -26,7 +25,8 @@ export default class EmailsInput {
     this.pillsInput = new PillsInput(
       inputContainer,
       emailValidator.validate,
-      'Please correct invalid emails'
+      'Please correct invalid emails',
+      this.options.id
     );
   }
 
@@ -56,12 +56,12 @@ export default class EmailsInput {
   subscribe(callback) {
     if (document.addEventListener) {
       document.addEventListener(
-        `input-change`,
+        `input${this.options.id}-change`,
         ({ detail }) => callback(detail),
         false
       );
     } else {
-      document.attachEvent(`input-change`, ({ detail }) =>
+      document.attachEvent(`input${this.options.id}-change`, ({ detail }) =>
         callback(detail)
       );
     }

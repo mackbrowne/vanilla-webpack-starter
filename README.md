@@ -16,5 +16,3 @@ Ability to subscribe for emails list changes. -- subscribe( callback ) -- callba
 Minor:
 maybe add a button around the x
 hit too many keys and the commas come back
-think about how im doing bem in index.js more
-Look into detaching, unsubscribing events

@@ -3,10 +3,11 @@ import Pill from './Pill';
 import Input from './Input';
 
 export default class PillsInput {
-  constructor(parent, validator, errorMessage) {
+  constructor(parent, validator, errorMessage, id = '') {
     this.parent = parent;
     this.validator = validator;
     this.errorMessage = errorMessage;
+    this.id = id;
 
     this._renderTemplate();
 
@@ -40,7 +41,7 @@ export default class PillsInput {
 
   _dispatchEvent(detail) {
     this._validate();
-    document.dispatchEvent(new CustomEvent(`input-change`, { detail }));
+    document.dispatchEvent(new CustomEvent(`input${this.id}-change`, { detail }));
   }
 
   _validate() {
