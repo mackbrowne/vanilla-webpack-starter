@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         test: /\.html$/i,
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
     ],
   },
@@ -33,6 +33,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/public/index.html',
       favicon: 'src/public/favicon.ico',
+      meta: {
+        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+      },
     }),
   ],
 };
