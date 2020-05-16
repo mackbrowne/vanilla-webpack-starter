@@ -41,7 +41,9 @@ export default class PillsInput {
 
   _dispatchEvent(detail) {
     this._validate();
-    document.dispatchEvent(new CustomEvent(`input${this.id}-change`, { detail }));
+    document.dispatchEvent(
+      new CustomEvent(`input${this.id}-change`, { detail })
+    );
   }
 
   _validate() {
@@ -50,18 +52,18 @@ export default class PillsInput {
       this.errorMessageContainer.classList.add(`error-message-active`);
       this.errorContainer.classList.add(`error-container-active`);
     } else {
-      this.errorMessageContainer.classList.remove(
-        `error-message-active`
-      );
+      this.errorMessageContainer.classList.remove(`error-message-active`);
       this.errorContainer.classList.remove(`error-container-active`);
     }
   }
 
   addPill(label) {
-    new Pill(this.container, label, this.validator, (detail) =>
-      this._dispatchEvent(detail)
-    );
-    this._dispatchEvent(`Add - ${label}`);
+    if (label) {
+      new Pill(this.container, label, this.validator, (detail) =>
+        this._dispatchEvent(detail)
+      );
+      this._dispatchEvent(`Add - ${label}`);
+    }
   }
 
   clear() {

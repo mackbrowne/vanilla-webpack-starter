@@ -59,6 +59,13 @@ context('Input', () => {
       });
     });
 
+    it('empty, with enter should not create empty pill', () => {
+      cy.addEmailWithEnter(' ').then(() => {
+        cy.get('.input').should('be.focused');
+        cy.get('.pills-group').should('not.have.descendants');
+      });
+    });
+
     it('with comma', () => {
       cy.addEmailWithComma().then(() => {
         cy.get('.input').should('be.focused');
