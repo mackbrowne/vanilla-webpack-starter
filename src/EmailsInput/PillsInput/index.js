@@ -1,5 +1,4 @@
 import PillsInputTemplate from './PillsInput.html';
-import { bem } from '../index';
 import Pill from './Pill';
 import Input from './Input';
 
@@ -11,7 +10,7 @@ export default class PillsInput {
 
     this._renderTemplate();
 
-    const select = (name) => this.pillsInput.querySelector(`.${bem}--${name}`);
+    const select = (name) => this.pillsInput.querySelector(`.${name}`);
     this.container = select('pills-group');
     this.errorMessageContainer = select('error-message');
     this.errorContainer = select('error-container');
@@ -41,19 +40,19 @@ export default class PillsInput {
 
   _dispatchEvent(detail) {
     this._validate();
-    document.dispatchEvent(new CustomEvent(`${bem}--input-change`, { detail }));
+    document.dispatchEvent(new CustomEvent(`input-change`, { detail }));
   }
 
   _validate() {
-    const hasInvalid = this.container.querySelector(`.${bem}--pill-invalid`);
+    const hasInvalid = this.container.querySelector(`.pill-invalid`);
     if (hasInvalid) {
-      this.errorMessageContainer.classList.add(`${bem}--error-message-active`);
-      this.errorContainer.classList.add(`${bem}--error-container-active`);
+      this.errorMessageContainer.classList.add(`error-message-active`);
+      this.errorContainer.classList.add(`error-container-active`);
     } else {
       this.errorMessageContainer.classList.remove(
-        `${bem}--error-message-active`
+        `error-message-active`
       );
-      this.errorContainer.classList.remove(`${bem}--error-container-active`);
+      this.errorContainer.classList.remove(`error-container-active`);
     }
   }
 

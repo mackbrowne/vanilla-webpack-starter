@@ -5,8 +5,6 @@ import emailValidator from 'email-validator';
 import Button from './Button';
 import PillsInput from './PillsInput';
 
-export const bem = 'emails-input';
-
 export default class EmailsInput {
   constructor(
     node,
@@ -24,7 +22,7 @@ export default class EmailsInput {
   }
 
   _renderInput() {
-    const inputContainer = this.node.querySelector(`.${bem}--content`);
+    const inputContainer = this.node.querySelector(`.content`);
     this.pillsInput = new PillsInput(
       inputContainer,
       emailValidator.validate,
@@ -33,7 +31,7 @@ export default class EmailsInput {
   }
 
   _renderButtons() {
-    const buttonContainer = this.node.querySelector(`.${bem}--actions`);
+    const buttonContainer = this.node.querySelector(`.actions`);
 
     new Button(buttonContainer, 'Add email', () =>
       this.pillsInput.addPill(randomEmail())
@@ -58,12 +56,12 @@ export default class EmailsInput {
   subscribe(callback) {
     if (document.addEventListener) {
       document.addEventListener(
-        `${bem}--input-change`,
+        `input-change`,
         ({ detail }) => callback(detail),
         false
       );
     } else {
-      document.attachEvent(`${bem}--input-change`, ({ detail }) =>
+      document.attachEvent(`input-change`, ({ detail }) =>
         callback(detail)
       );
     }

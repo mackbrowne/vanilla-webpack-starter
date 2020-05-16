@@ -1,5 +1,4 @@
 import PillTemplate from './Pill.html';
-import { bem } from '../../index';
 
 export default class Pill {
   constructor(parent, label, validator, removeEvent) {
@@ -23,17 +22,17 @@ export default class Pill {
   }
 
   _renderLabel() {
-    this.pill.querySelector(`.${bem}--pill-label`).innerHTML = this.label;
+    this.pill.querySelector(`.pill-label`).innerHTML = this.label;
   }
 
   _validate() {
     const invalid = !this.validator(this.label.trim());
-    if (invalid) this.pill.classList.add(`${bem}--pill-invalid`);
+    if (invalid) this.pill.classList.add(`pill-invalid`);
   }
 
   _initRemove() {
     this.pill
-      .querySelector(`.${bem}--pill-remove`)
+      .querySelector(`.pill-remove`)
       .addEventListener('click', e => {
         e.stopPropagation();
         this.parent.removeChild(this.pill);

@@ -10,24 +10,22 @@ $border-primary: #c3c2cf;
 $shadow: rgba(0, 0, 0, 0.2);
 
 .emails-input {
+  color: $font-primary;
+  font-family: 'Open Sans';
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  box-shadow: 0px 8px 20px $shadow;
+  border-radius: 8px;
+  overflow: hidden;
+
   @import 'Button/Button.scss';
   @import 'PillsInput/PillsInput.scss';
   @import 'PillsInput/Pill/Pill.scss';
   @import 'PillsInput/Input/Input.scss';
 
-  &--container {
-    color: $font-primary;
-    font-family: 'Open Sans';
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    flex-direction: column;
-    min-height: 300px;
-    box-shadow: 0px 8px 20px $shadow;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  &--content {
+  .content {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -42,7 +40,7 @@ $shadow: rgba(0, 0, 0, 0.2);
     }
   }
 
-  &--actions {
+  .actions {
     background-color: $bg-secondary;
     display: flex;
     justify-content: flex-start;

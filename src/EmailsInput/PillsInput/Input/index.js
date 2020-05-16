@@ -1,8 +1,6 @@
 import keycode from 'keycode';
 import InputTemplate from './Input.html';
 
-import { bem } from '../../index';
-
 export default class Input {
   constructor(parent, placeholder = '', callback = () => {}) {
     this.parent = parent;
@@ -19,14 +17,14 @@ export default class Input {
     const template = document.createElement('template');
     template.innerHTML = InputTemplate;
     this.inputElement = template.content;
-    this.input = this.inputElement.querySelector(`.${bem}--input`);
+    this.input = this.inputElement.querySelector(`.input`);
     this.input.innerText = this.placeholder;
   }
 
   _initListeners() {
     this.input.addEventListener('focus', (e) => {
       this.input.innerText = '';
-      this.input.classList.add(`${bem}--input-active`);
+      this.input.classList.add(`input-active`);
     });
 
     this.input.addEventListener('blur', (e) => {
@@ -35,7 +33,7 @@ export default class Input {
 
       this.input.contentEditable = false;
       this.input.innerHTML = this.placeholder;
-      this.input.classList.remove(`${bem}--input-active`);
+      this.input.classList.remove(`input-active`);
     });
 
     this.input.addEventListener('paste', (e) => {
