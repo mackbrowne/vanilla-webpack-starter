@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context('Layout', () => {
+context('Layout Snapshots', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080');
   });
@@ -9,17 +9,21 @@ context('Layout', () => {
   const RANDOM_OVERRIDE2 = 'notreal@gmail.com';
   const RANDOM_OVERRIDE3 = 'superfake@gmail.com';
 
-  it('with a empty input', () => {
-    cy.takeSnapshot();
+  it('empty input', () => {
+    cy.fixture('example').then(({ title }) => {
+      cy.get('h1').should('have.text', title);
+
+      cy.takeSnapshot();
+    });
   });
 
-  it('with some valid emails', () => {
+  it('some valid emails', () => {
     cy.addEmailWithEnter(RANDOM_OVERRIDE1);
     cy.addEmailWithEnter(RANDOM_OVERRIDE2);
     cy.takeSnapshot();
   });
 
-  it('with lots of valid emails', () => {
+  it('lots of valid emails', () => {
     cy.addEmailWithEnter(RANDOM_OVERRIDE3);
     cy.addEmailWithEnter(RANDOM_OVERRIDE2);
     cy.addEmailWithEnter(RANDOM_OVERRIDE1);
@@ -30,7 +34,7 @@ context('Layout', () => {
     cy.takeSnapshot();
   });
 
-  it('with some invalid emails', () => {
+  it('some invalid emails', () => {
     cy.addEmailWithEnter('invalid');
     cy.addEmailWithComma(RANDOM_OVERRIDE2);
     cy.addEmailWithUnfocus();

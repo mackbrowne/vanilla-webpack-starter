@@ -9,15 +9,7 @@ context('Actions', () => {
     cy.on('window:alert', message);
   });
 
-  it('Renders the dom with a message', () => {
-    cy.fixture('example').then(({ title }) => {
-      cy.get('h1').should('have.text', title);
-
-      cy.get('body').snapshot();
-    });
-  });
-
-  it('Click Add Email Button', () => {
+  it('add email button', () => {
     cy.clickButton('Add email');
     cy.get('.pill').should('have.length', 1);
 
@@ -26,7 +18,7 @@ context('Actions', () => {
     });
   });
 
-  it('Click Add Email Button 50 Times', () => {
+  it('50 times', () => {
     for (let i = 0; i < 50; i++) {
       cy.clickButton('Add email');
     }

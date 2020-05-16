@@ -6,7 +6,7 @@ context('Input', () => {
   });
 
   context('Focus', () => {
-    it('Clicks the textarea', () => {
+    it('click the input directly', () => {
         cy.get('.input').type('example@examplemail.com,');
       cy.get('.emails-input--wrapper')
         .click('topLeft')
@@ -15,7 +15,7 @@ context('Input', () => {
         });
     });
 
-    it('Clicks the textarea', () => {
+    it('click the textarea', () => {
       cy.get('.textarea')
         .click('bottom')
         .then(() => {
@@ -23,20 +23,6 @@ context('Input', () => {
         });
 
       cy.get('.emails-input--wrapper')
-        .click('topLeft')
-        .then(() => {
-          cy.get('.input').should('not.be.focused');
-        });
-    });
-
-    it('Clicks the input directly', () => {
-      cy.get('.input')
-        .click()
-        .then(() => {
-          cy.get('.input').should('be.focused');
-        });
-
-      cy.get('body')
         .click('topLeft')
         .then(() => {
           cy.get('.input').should('not.be.focused');
