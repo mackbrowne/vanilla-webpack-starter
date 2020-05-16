@@ -10,13 +10,13 @@ context('Layout', () => {
   const RANDOM_OVERRIDE3 = 'superfake@gmail.com';
 
   it('with a empty input', () => {
-    cy.get('body').snapshot();
+    cy.takeSnapshot();
   });
 
   it('with some valid emails', () => {
     cy.addEmailWithEnter(RANDOM_OVERRIDE1);
     cy.addEmailWithEnter(RANDOM_OVERRIDE2);
-    cy.get('body').snapshot();
+    cy.takeSnapshot();
   });
 
   it('with lots of valid emails', () => {
@@ -27,7 +27,7 @@ context('Layout', () => {
     cy.addEmailWithEnter(RANDOM_OVERRIDE3);
     cy.addEmailWithEnter(RANDOM_OVERRIDE2);
     cy.addEmailWithEnter(RANDOM_OVERRIDE1);
-    cy.get('body').snapshot();
+    cy.takeSnapshot();
   });
 
   it('with some invalid emails', () => {
@@ -39,6 +39,6 @@ context('Layout', () => {
     cy.addEmailWithEnter('invalid');
     cy.addEmailWithEnter(RANDOM_OVERRIDE3);
     cy.addEmailWithEnter(RANDOM_OVERRIDE2);
-    cy.get('body').snapshot();
+    cy.takeSnapshot();
   });
 });

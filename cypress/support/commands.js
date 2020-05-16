@@ -30,14 +30,18 @@ Cypress.Commands.add('clickButton', (label) =>
 
 Cypress.Commands.add('typeEmail', (label) => cy.get('.input').type(label));
 
-const EXAMPLE_EMAIL = 'example@examplemail.com'
+const EXAMPLE_EMAIL = 'example@examplemail.com';
 Cypress.Commands.add('addEmailWithEnter', (email = EXAMPLE_EMAIL) =>
   cy.typeEmail(`${email}{enter}`)
 );
+
 Cypress.Commands.add('addEmailWithUnfocus', (email = EXAMPLE_EMAIL) => {
   cy.typeEmail(email);
   cy.get('body').click();
 });
+
 Cypress.Commands.add('addEmailWithComma', (email = EXAMPLE_EMAIL) =>
   cy.typeEmail(`${email},`)
 );
+
+Cypress.Commands.add('takeSnapshot', () => cy.get('body').snapshot());

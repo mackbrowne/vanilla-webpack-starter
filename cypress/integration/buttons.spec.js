@@ -10,7 +10,7 @@ context('Actions', () => {
   });
 
   it('Renders the dom with a message', () => {
-    cy.fixture('example').then(({ bodyMessage, title }) => {
+    cy.fixture('example').then(({ title }) => {
       cy.get('h1').should('have.text', title);
 
       cy.get('body').snapshot();
