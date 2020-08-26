@@ -11,7 +11,7 @@
     "start:build": "yarn build && serve -s dist/"
   },
   "devDependencies": {
-    "css-loader": "^3.5.3",
+    "css-loader": "^4.2.2",
     "html-webpack-plugin": "^4.3.0",
     "serve": "^11.3.0",
     "style-loader": "^1.2.1",
