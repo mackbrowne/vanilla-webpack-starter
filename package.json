@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "css-loader": "^3.5.3",
-    "html-webpack-plugin": "^4.3.0",
+    "html-webpack-plugin": "^4.5.0",
     "serve": "^11.3.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
